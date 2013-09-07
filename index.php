@@ -1,3 +1,29 @@
+<?php 
+/*  
+	Eat My Gif 
+	
+	Copyright (c) 2013, MikeNGarrett >> See bottom for license
+	Github: https://github.com/MikeNGarrett
+	
+*/
+/* 
+Where are you going to put your gifs? 
+For example if this file is in http://domain.com/gifs and $dir is set to "a/" we'll look in http://domain.com/gifs/a/ for your gifs.
+*/
+$dir = "a/";
+
+/* Which file do you want to start with? I'm going to assume you want to start at the beginning. */
+$start = 0;
+
+/* How many gifs do you want to show per page? I like 10. You should give it a try. */
+$limit = 10;
+
+/* Which page do you want to start on? I'm going to also assume you want to start at the first page. */
+$page = 0;
+
+/* Twitter username. I'm using this because it's the easiest way to get in touch "anonymously." */
+$twitter = "MikeNGarrett"
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -115,12 +141,7 @@
 			<h1><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"],'?'); ?>" title="Return home">Eat My Gif</a></h1>
 			<h6 class="loading">PEANUT BUTTER LOADING!</h6>
 		</header>
-			<?php
-			$dir = "a/";
-			$start = 0;
-			$limit = 10;
-			$page = 0;
-			
+			<?php			
 			if ($_GET['page']) {
 				$page = $_GET['page'];
 				$start = $page * $limit;
@@ -163,7 +184,7 @@
 				} else {
 					print '<script type="text/javascript">$(function() { $("h6").remove(); });</script>';
 
-					print '<section><article class="error"><p><strong>OH NOES!</strong> You&rsquo;ve seen everything! That&rsquo;s it! <em>CRAP!</em> <br><a href="mailto:hello@kernme.org" title="Get in touch with the Author">Poke Mike</a> and get him to add more.</p></article>';
+					print '<section><article class="error"><p><strong>OH NOES!</strong> You&rsquo;ve seen everything! That&rsquo;s it! <em>CRAP!</em> <br><a href="http://twitter.com/'.$twitter.'" title="Get in touch with the Author">Poke Mike</a> and get him to add more.</p></article>';
 				}
 			}
 			?>
@@ -179,7 +200,38 @@
 					<?php } ?>
 				</ul>
 			</nav>
-			<p>Created with love by <a href="http://twitter.com/MikeNGarrett" title="Say hi to MikeNGarrett on Twitter">@MikeNGarrett</a></p>
+			<p>Created with love by <a href="http://twitter.com/<?php echo $twitter; ?>" title="Say hi to <?php echo $twitter; ?> on Twitter">@<?php echo $twitter; ?></a></p>
 		</footer>
 	</body>
 </html>
+<?php
+/*
+	Literally the Simplified BSD License
+	
+	All rights reserved.
+	
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+	
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+	
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of Mike Garrett.
+*/
+?>
