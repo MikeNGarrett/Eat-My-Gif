@@ -18,6 +18,7 @@ Dead simple drop in php script for publishing an animated gif archive
 Installation
 ----------
 Requires Apache, php and somewhere to stick it.
+
 ![Sweet Jesus](http://redgarrett.com/gifs/a/JmBkN.gif "Sweet Jesus!")
 
 
@@ -26,6 +27,7 @@ Usage
 I have this script [installed on my server](http://redgarrett.com/gifs/). 
 Index.php is in the `gifs` directory and my files are stored in `gifs/a`. 
 If you just want to drop it in I suggest replicating the same setup. 
+
 ![Beep boop](http://redgarrett.com/gifs/a/ii_1409c53d1b4a339b.gif "Beep boop")
 
 
@@ -39,6 +41,7 @@ So far you have the ability to change
 * How many gifs per page
 * The page you want to start on
 * Your twitter username (for contact info)
+
 ![Developer](http://redgarrett.com/gifs/a/tumblr_ml1br7CRm51rwydguo1_500.gif "Like a Developer")
 
 
@@ -47,6 +50,7 @@ Development Recommendations
 Give your own spin. I **highly** encourage people to stick in their own js and css to make it their own. 
 
 Don't make it ugly. 
+
 ![Angry face](http://redgarrett.com/gifs/a/ypbDynK.gif "Angry face")
 
 
@@ -60,6 +64,7 @@ Changelog
 - Pagination + settings
 - Basic, basic error handling
 - Awesome readme file
+
 ![S.M.A.C.](http://redgarrett.com/gifs/a/tumblr_mo0c30KGtG1rcy99do1_500.gif "S.M.A.C.")
 
 
