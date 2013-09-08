@@ -57,6 +57,14 @@ Don't make it ugly.
 
 Changelog
 -------------
+### v0.2 2013-09-07 - What the Hell is Going on? (W.H.i.G.)
+- Moved the logic to the top and the output to the bottom
+- Added a version number so you know what's going on
+- Added in page and item numbers
+- Check to make sure you actually added files to the directory you said you would
+
+![W.H.i.G.](http://redgarrett.com/gifs/a/tumblr_lnkmp1Chn61qd10pyo1_500.gif "W.H.i.G.")
+
 
 ### v0.1 2013-09-07 - Small Mad Angel Child (S.M.A.C.)
 - Get gifs, order by modified (latest first), output modified date on image

@@ -1,6 +1,6 @@
 <?php
 /*
-	Eat My Gif
+	Eat My Gif v0.2
 
 	Copyright (c) 2013, MikeNGarrett >> See bottom for license
 	Github: https://github.com/MikeNGarrett
