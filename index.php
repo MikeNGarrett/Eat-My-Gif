@@ -1,13 +1,13 @@
-<?php 
-/*  
-	Eat My Gif 
-	
+<?php
+/*
+	Eat My Gif
+
 	Copyright (c) 2013, MikeNGarrett >> See bottom for license
 	Github: https://github.com/MikeNGarrett
-	
-*/
-/* 
-Where are you going to put your gifs? 
+
+==================================================
+
+Where are you going to put your gifs?
 For example if this file is in http://domain.com/gifs and $dir is set to "a/" we'll look in http://domain.com/gifs/a/ for your gifs.
 */
 $dir = "a/";
@@ -22,7 +22,60 @@ $limit = 10;
 $page = 0;
 
 /* Twitter username. I'm using this because it's the easiest way to get in touch "anonymously." */
-$twitter = "MikeNGarrett"
+$twitter = "MikeNGarrett";
+
+// Pagination check
+if ($_GET['page']) {
+	$page = $_GET['page'];
+	$start = $page * $limit;
+}
+
+// Look through files and get all gifs with modified dates and stick it in an array
+$files = array();
+if ($handle = opendir($dir)) {
+	while (false !== ($file = readdir($handle))) {
+		if ($file != "." && $file != "..") {
+			if (filetype($dir.$file) == 'file') {
+				if (pathinfo($dir.$file, PATHINFO_EXTENSION) == 'gif') {
+					$files[filemtime($dir.$file)] = $dir.$file;
+				}
+			}
+		}
+	}
+	closedir($handle);
+	$total = count($files);
+}
+
+// Let's make sure you actually have some files
+if (count($files) > 0) {
+	// sort
+	krsort($files);
+	$x = 0;
+	if ($start < $total) {
+		$output = '';
+		foreach ($files as $file) {
+			if ($x >= $start && $x < $start + $limit) {
+				$theId = 'container';
+				$lastModified = date('F d Y, H:i:s', filemtime($file));
+				$info = getimagesize($file);
+				$output .= '<article class="item">';
+				$time = filemtime($file);
+				$output .= '<header class="timestamp"><p>Added <time datetime="'.date('c', $time).'">'.date('F d Y, H:i:s', $time).'</time></p></header>';
+				$output .= '<figure><img src="'.$file.'" '.$info[3].' alt="gify goodness"></figure>';
+				$output .= '</article>';
+			}
+			$x++;
+		}
+	} else {
+		$theId = 'errorContainer';
+		$output = '<script type="text/javascript">$(function() { $("h6").remove(); });</script>';
+		$output .= '<article class="error"><p><strong>OH NOES!</strong> You&rsquo;ve seen everything! That&rsquo;s it! <em>CRAP!</em> <br><a href="http://twitter.com/'.$twitter.'" title="Get in touch with the Author">Poke Mike</a> and get him to add more.</p></article>';
+	}
+} else {
+	$theId = 'errorContainer';
+	$output = '<script type="text/javascript">$(function() { $("h6").remove(); });</script>';
+	$output .= '<article class="error"><p><strong>WHOOPS</strong> There aren&raquo;t any files to show. Try adding some files to '.$_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"], '?').$dir.'</p></article>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +108,7 @@ $twitter = "MikeNGarrett"
 				margin: 50px;
 				font-family: "Myriad Pro", Arial, sans-serif;
 				font-size: 14px;
-				line-height: 1.4;		
+				line-height: 1.4;
 			}
 			strong {
 				font-weight: 700;
@@ -68,6 +121,13 @@ $twitter = "MikeNGarrett"
 				font-size: 24px;
 				margin: 20px 0 40px 0;
 				line-height: 1.6;
+			}
+			.page {
+				background: #CCC;
+				color: #000;
+				padding: 10px;
+				margin-bottom: 20px;
+				text-align: center;
 			}
 			footer nav {
 				display: block;
@@ -138,65 +198,21 @@ $twitter = "MikeNGarrett"
 
 	<body>
 		<header>
-			<h1><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"],'?'); ?>" title="Return home">Eat My Gif</a></h1>
+			<h1><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"], '?'); ?>" title="Return home">Eat My Gif</a></h1>
 			<h6 class="loading">PEANUT BUTTER LOADING!</h6>
+			<p class="page">Items <?php print $start.'-'.($start+$limit).' of '.$total; ?></p>
 		</header>
-			<?php			
-			if ($_GET['page']) {
-				$page = $_GET['page'];
-				$start = $page * $limit;
-			}
-			
-			$files = array();
-			if ($handle = opendir($dir)) {
-				while (false !== ($file = readdir($handle))) {
-					if ($file != "." && $file != "..") {
-						if (filetype($dir.$file) == 'file') {
-							if (pathinfo($dir.$file, PATHINFO_EXTENSION) == 'gif') {
-								$files[filemtime($dir.$file)] = $dir.$file;
-							}
-						}
-					}
-				}
-				closedir($handle);
-			
-			
-				// sort
-				krsort($files);
-				$x = 0;
-				$total = count($files);
-				if($start < $total) {
-				?>
-				<section id="container">
-				<?php 
-					foreach ($files as $file) {
-						if ($x >= $start && $x < $start + $limit) {
-							$lastModified = date('F d Y, H:i:s', filemtime($file));
-							$info = getimagesize($file);
-							print '<article class="item">';
-							$time = filemtime($file);
-							print '<header class="timestamp"><p>Added <time datetime="'.date('c', $time).'">'.date('F d Y, H:i:s', $time).'</time></p></header>';
-							print '<figure><img src="'.$file.'" '.$info[3].' alt="gify goodness"></figure>';
-							print '</article>';
-						}
-						$x++;
-					}
-				} else {
-					print '<script type="text/javascript">$(function() { $("h6").remove(); });</script>';
-
-					print '<section><article class="error"><p><strong>OH NOES!</strong> You&rsquo;ve seen everything! That&rsquo;s it! <em>CRAP!</em> <br><a href="http://twitter.com/'.$twitter.'" title="Get in touch with the Author">Poke Mike</a> and get him to add more.</p></article>';
-				}
-			}
-			?>
+		<section id="<?php echo $theId; ?>">
+			<?php print $output; ?>
 		</section>
 		<footer>
 			<nav>
 				<ul>
-					<?php if($page > 0) { ?>
-		 				<li class="prev"><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"],'?'); ?>?page=<?php echo $page-1; ?>" title="Previous Page">&laquo; LESS!</a></li>
-		 			<?php } ?>
-		 			<?php if($start + $limit < $total) { ?>
-					<li class="next"><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"],'?'); ?>?page=<?php echo $page+1; ?>" title="Next Page">MOAR! &raquo;</a></li>
+					<?php if ($page > 0) { ?>
+						<li class="prev"><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"], '?'); ?>?page=<?php echo $page-1; ?>" title="Previous Page">&laquo; LESS!</a></li>
+					<?php } ?>
+					<?php if ($start + $limit < $total) { ?>
+					<li class="next"><a href="http://<?php echo $_SERVER['SERVER_NAME'].strtok($_SERVER["REQUEST_URI"], '?'); ?>?page=<?php echo $page+1; ?>" title="Next Page">MOAR! &raquo;</a></li>
 					<?php } ?>
 				</ul>
 			</nav>
@@ -207,18 +223,18 @@ $twitter = "MikeNGarrett"
 <?php
 /*
 	Literally the Simplified BSD License
-	
+
 	All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
-	
+	modification, are permitted provided that the following conditions are met:
+
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
-	
+	   and/or other materials provided with the distribution.
+
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -229,9 +245,9 @@ $twitter = "MikeNGarrett"
 	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-	
+
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of Mike Garrett.
 */
 ?>
