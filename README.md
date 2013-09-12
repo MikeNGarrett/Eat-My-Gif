@@ -1,6 +1,7 @@
 Eat My Gif
 ======
-Dead simple drop in php script for publishing an animated gif archive.
+## Drop in, upload gifs, eat pie.
+Dead simple drop in php script for publishing an animated gif archive. 
 [Take a look](http://redgarrett.com/gifs/)
 
 ![Yay!](http://redgarrett.com/gifs/a/25_yay2.gif "Yay!")
