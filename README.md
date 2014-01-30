@@ -110,3 +110,7 @@ Copyright (C) 2013 Mike Garrett
 	either expressed or implied, of Mike Garrett.
 	
 ![Well done](http://redgarrett.com/gifs/a/tumblr_li8ic3BwYu1qz8x7f.gif "Well done!")
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MikeNGarrett/eat-my-gif/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
