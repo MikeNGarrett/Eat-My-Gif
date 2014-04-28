@@ -2,9 +2,9 @@ Eat My Gif
 ======
 ## Drop in, upload gifs, eat pie.
 Dead simple drop in php script for publishing an animated gif archive. 
-[Take a look](http://redgarrett.com/gifs/)
+[Take a look](http://redgarrett.com/lab/gifs/)
 
-![Yay!](http://redgarrett.com/gifs/a/25_yay2.gif "Yay!")
+![Yay!](http://redgarrett.com/lab/gifs/a/25_yay2.gif "Yay!")
 
  * Animated Gifs!
  * Lots of them! 
@@ -21,16 +21,16 @@ Installation
 ----------
 Requires Apache, php and somewhere to stick it.
 
-![Sweet Jesus](http://redgarrett.com/gifs/a/JmBkN.gif "Sweet Jesus!")
+![Sweet Jesus](http://redgarrett.com/lab/gifs/a/JmBkN.gif "Sweet Jesus!")
 
 
 Usage
 -----
-I have this script [installed on my server](http://redgarrett.com/gifs/). 
+I have this script [installed on my server](http://redgarrett.com/lab/gifs/). 
 Index.php is in the `gifs` directory and my files are stored in `gifs/a`. 
 If you just want to drop it in I suggest replicating the same setup. 
 
-![Beep boop](http://redgarrett.com/gifs/a/ii_1409c53d1b4a339b.gif "Beep boop")
+![Beep boop](http://redgarrett.com/lab/gifs/a/ii_1409c53d1b4a339b.gif "Beep boop")
 
 
 Configure
@@ -44,7 +44,7 @@ So far you have the ability to change
 * The page you want to start on
 * Your twitter username (for contact info)
 
-![Developer](http://redgarrett.com/gifs/a/tumblr_ml1br7CRm51rwydguo1_500.gif "Like a Developer")
+![Developer](http://redgarrett.com/lab/gifs/a/tumblr_ml1br7CRm51rwydguo1_500.gif "Like a Developer")
 
 
 Development Recommendations
@@ -53,7 +53,7 @@ Give your own spin. I **highly** encourage people to stick in their own js and c
 
 Don't make it ugly. 
 
-![Angry face](http://redgarrett.com/gifs/a/ypbDynK.gif "Angry face")
+![Angry face](http://redgarrett.com/lab/gifs/a/ypbDynK.gif "Angry face")
 
 
 Changelog
@@ -64,7 +64,7 @@ Changelog
 - Added in page and item numbers
 - Check to make sure you actually added files to the directory you said you would
 
-![W.H.i.G.](http://redgarrett.com/gifs/a/tumblr_lnkmp1Chn61qd10pyo1_500.gif "W.H.i.G.")
+![W.H.i.G.](http://redgarrett.com/lab/gifs/a/tumblr_lnkmp1Chn61qd10pyo1_500.gif "W.H.i.G.")
 
 
 ### v0.1 2013-09-07 - Small Mad Angel Child (S.M.A.C.)
@@ -75,7 +75,7 @@ Changelog
 - Basic, basic error handling
 - Awesome readme file
 
-![S.M.A.C.](http://redgarrett.com/gifs/a/tumblr_mo0c30KGtG1rcy99do1_500.gif "S.M.A.C.")
+![S.M.A.C.](http://redgarrett.com/lab/gifs/a/tumblr_mo0c30KGtG1rcy99do1_500.gif "S.M.A.C.")
 
 
 License (Simplified BSD)
@@ -109,7 +109,7 @@ Copyright (C) 2013 Mike Garrett
 	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of Mike Garrett.
 	
-![Well done](http://redgarrett.com/gifs/a/tumblr_li8ic3BwYu1qz8x7f.gif "Well done!")
+![Well done](http://redgarrett.com/lab/gifs/a/tumblr_li8ic3BwYu1qz8x7f.gif "Well done!")
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/MikeNGarrett/eat-my-gif/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
